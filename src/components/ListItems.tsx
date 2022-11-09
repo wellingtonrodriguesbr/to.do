@@ -14,20 +14,20 @@ interface ListProps {
 
 export function ListItems({ items, setItems }: ListProps) {
   const toast = useToast();
+  const inputRef = useRef<TextInput>(null);
   const [title, setTitle] = useState("");
 
-  const id = Math.random().toString(16).slice(2);
-  const newTitleInputRef = useRef<TextInput>(null);
+  const isFieldEmpty = !title.trim().length;
 
   function handleAdd() {
     const newItem = {
-      id,
+      id: String(new Date().getTime()),
       title,
       checked: false,
     };
 
     setItems([...items, newItem]);
-    newTitleInputRef.current?.blur();
+    inputRef.current?.blur();
     setTitle("");
   }
 
@@ -54,14 +54,12 @@ export function ListItems({ items, setItems }: ListProps) {
     });
   }
 
-  const isFieldEmpty = !title.trim().length ? true : false;
-
   return (
     <Box flex={1} bg="gray.100">
       <HStack mt={-8} alignItems="center" px={6}>
         <Input
-          newTitleInputRef={newTitleInputRef}
-          placeholder="Adicione um item"
+          inputRef={inputRef}
+          placeholder="Escreva o nome do item..."
           flex={1}
           onChangeText={setTitle}
           value={title}

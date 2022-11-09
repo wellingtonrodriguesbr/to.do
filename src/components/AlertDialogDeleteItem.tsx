@@ -4,12 +4,10 @@ import { useRef, useState } from "react";
 
 interface AlertDialogDeleteItemProps {
   handleRemoveItem: () => void;
-  isEdit: boolean;
 }
 
 export function AlertDialogDeleteItem({
   handleRemoveItem,
-  isEdit,
 }: AlertDialogDeleteItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
@@ -18,7 +16,6 @@ export function AlertDialogDeleteItem({
   return (
     <>
       <Button
-        disabled={isEdit}
         bg="transparent"
         pr={0}
         _pressed={{
@@ -26,7 +23,7 @@ export function AlertDialogDeleteItem({
         }}
         onPress={() => setIsOpen(!isOpen)}
       >
-        <Trash size={20} color={isEdit ? "#b2b2b250" : "#B2B2B2"} />
+        <Trash size={20} color="#B2B2B2" />
       </Button>
       <AlertDialog
         leastDestructiveRef={cancelRef}

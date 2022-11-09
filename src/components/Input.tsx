@@ -2,14 +2,14 @@ import { Input as NativeBaseInput, IInputProps } from "native-base";
 import { TextInput } from "react-native";
 
 interface InputProps extends IInputProps {
-  newTitleInputRef?: React.RefObject<TextInput>;
+  inputRef?: React.RefObject<TextInput>;
 }
 
-export function Input({ newTitleInputRef, ...rest }: InputProps) {
+export function Input({ inputRef, ...rest }: InputProps) {
   return (
     <NativeBaseInput
       {...rest}
-      ref={newTitleInputRef}
+      ref={inputRef}
       bg="white"
       autoCorrect={false}
       px={5}
